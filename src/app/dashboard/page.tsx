@@ -31,7 +31,7 @@ export default function Dashboard() {
     router.push('/')
   }
 
-  if (loading) return <p>Loading...</p>
+  if (loading) return <p className="flex items-center justify-center h-screen">Loading...</p>
 
   return (
     <main className="max-w-xl mx-auto mt-10 p-4">

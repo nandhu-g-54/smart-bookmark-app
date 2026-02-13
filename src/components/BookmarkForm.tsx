@@ -23,7 +23,7 @@ export default function BookmarkForm() {
   }
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 mt-4">
       <input
         type="text"
         placeholder="Title"

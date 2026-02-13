@@ -8,13 +8,14 @@ export default function LoginButton() {
 
   const login = async () => {
     setLoading(true)
-    try {
-      await supabase.auth.signInWithOAuth({
-        provider: 'google',
-      })
-    } catch (error) {
-      console.error('Login error:', error)
-    } finally {
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: `${window.location.origin}/dashboard` },
+    })
+
+    if (error) {
+      alert(error.message)
       setLoading(false)
     }
   }
@@ -22,8 +23,8 @@ export default function LoginButton() {
   return (
     <button
       onClick={login}
-      className={`px-4 py-2 bg-black text-white rounded ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
       disabled={loading}
+      className={`px-4 py-2 bg-black text-white rounded ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
     >
       {loading ? 'Signing in...' : 'Sign in with Google'}
     </button>

@@ -41,7 +41,7 @@ export default function BookmarkList() {
     }
   }
 
-  if (bookmarks.length === 0) return <p>No bookmarks yet.</p>
+  if (bookmarks.length === 0) return <p className="mt-4">No bookmarks yet.</p>
 
   return (
     <div className="space-y-2 mt-4">
