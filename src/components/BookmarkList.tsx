@@ -7,6 +7,7 @@ interface Bookmark {
   id: string
   title: string
   url: string
+  id: string
 }
 
 export default function BookmarkList() {
@@ -32,7 +33,10 @@ export default function BookmarkList() {
       )
       .subscribe()
 
-    return () => supabase.removeChannel(channel)
+    // Cleanup function must be synchronous
+    return () => {
+      supabase.removeChannel(channel)
+    }
   }, [])
 
   const deleteBookmark = async (id: string) => {
@@ -46,7 +50,10 @@ export default function BookmarkList() {
   return (
     <div className="space-y-2 mt-4">
       {bookmarks.map((bookmark) => (
-        <div key={bookmark.id} className="flex justify-between items-center bg-white p-3 rounded shadow">
+        <div
+          key={bookmark.id}
+          className="flex justify-between items-center bg-white p-3 rounded shadow"
+        >
           <a href={bookmark.url} target="_blank" className="text-blue-600 underline">
             {bookmark.title}
           </a>
